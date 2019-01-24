@@ -18,3 +18,7 @@
 [知乎文章](https://zhuanlan.zhihu.com/p/55646130)
 
 ![assets/2018.jpg](assets/2018.jpg)
+
+## LICENSE
+
+[MIT](LICENSE)
