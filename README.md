@@ -15,5 +15,6 @@
 ## 2018年会抽奖 
 
 [在线演示](https://75team.github.io/raffle/2018/index.html) [CodePen](https://codepen.io/akira-cn/pen/xMGYoZ)
+[知乎文章](https://zhuanlan.zhihu.com/p/55646130)
 
 ![assets/2018.jpg](assets/2018.jpg)
