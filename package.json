@@ -2,7 +2,7 @@
   "name": "raffle",
   "version": "0.1.0",
   "description": "奇舞团历年抽奖程序",
-  "main": "src/index.js",
+  "main": "2018/app.js",
   "scripts": {
     "start": "http-server -c-1 -p3000",
     "test": "echo \"Error: no test specified\" && exit 1"
