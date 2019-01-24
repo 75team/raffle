@@ -43,17 +43,29 @@ members = filterWinner(members);
 const startBtn = document.getElementById('start');
 const clearBtn = document.getElementById('clear');
 
-startBtn.addEventListener('click', () => {
+startBtn.addEventListener('click', async () => {
   startBtn.disabled = 'disabled';
   clearBtn.disabled = 'disabled';
+
+  // 重新洗牌
   shuffle(members);
+
+  // 取出最后6名同学，倒数3名中奖，剩下3名凑数
   const candidates = members.slice(-6).reverse();
-  race(candidates);
+
+  // 将中奖结果保存到localStorage中
   addResults(candidates.slice(0, 3));
   members.length -= 3;
+
+  // 开始跑马程序
+  await race(candidates);
+
+  startBtn.disabled = '';
+  clearBtn.disabled = '';
 });
 
 clearBtn.addEventListener('click', () => {
+  // 清除所有中奖记录
   localStorage.removeItem(prizeStorageKey);
 });
 
@@ -62,6 +74,8 @@ const trackLen = 820; // 205 * 4
 const trackEl = document.getElementById('track');
 
 function partRace(durations, factor) {
+  // 根据赛程总时间 duration 和 factor 来划分赛程
+  // 赛程所用基准时间为 duration * factor，扰动 -0.1 ~ +0.1
   const subDuration = durations.map(d => d * factor * random(9, 11) / 10);
   subDuration.map((d, i) => {
     durations[i] -= d;
@@ -74,6 +88,7 @@ function race(candidates) {
   const durations = [];
   for(let i = 0, duration = 0.9; i < candidates.length; i++) {
     durations.push(duration);
+    // 每一名次随机增加 0.02 ~ 0.05 的时间
     duration += random(2, 5) * 0.01;
   }
 
@@ -86,6 +101,7 @@ function race(candidates) {
     </div>`;
   }).join('');
 
+  // 划分4段赛程
   const round1 = partRace(durations, 0.25);
   const round2 = partRace(durations, 0.33);
   const round3 = partRace(durations, 0.5);
@@ -96,11 +112,13 @@ function race(candidates) {
   const T = 8000;
 
   const horses = document.querySelectorAll('.horse');
+  const promises = [];
+
   for(let i = 0; i < horses.length; i++) {
     const horse = horses[i];
     const idx = players[i][0];
 
-    raceHorse(horse, round1[idx] * T)
+    promises.push(raceHorse(horse, round1[idx] * T)
       .then(() => {
         return raceHorse(horse, round2[idx] * T, 30 + trackLen / 4);
       })
@@ -113,14 +131,10 @@ function race(candidates) {
       .then(() => {
         horse.innerHTML = `<span>${results[idx]}</span>${horse.innerHTML}`;
         return raceHorse(horse, 0.1 * T, 30 + trackLen, 100);
-      })
-      .then(() => {
-        if(idx === 5) {
-          startBtn.disabled = '';
-          clearBtn.disabled = 'disabled';
-        }
-      });
+      }));
   }
+
+  return Promise.all(promises);
 }
 
 function raceHorse(horseEl, duration, from = 30, by = trackLen / 4) {
