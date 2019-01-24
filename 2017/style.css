@@ -1,0 +1,58 @@
+html, body {
+  margin: 0;
+  padding: 10px;
+}
+
+.lottery button {
+  font-size: 2.5em;
+}
+
+#cardList span{
+  position: relative;
+  width: 150px;
+  height: 200px;
+  text-align: right;
+  font-size: 1.8em;
+  vertical-align:bottom;
+  padding-right: 10px;
+  display: inline-block;
+  border: solid 3px grey;
+  border-radius: 15px;
+  margin: 10px 10px 0 0;
+  opacity: 0;
+}
+
+#cardList .♠️,
+#cardList .♣️ {
+  color: black;
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+#cardList .♥️,
+#cardList .♦️ {
+  color: red;
+  opacity: 1;
+  transition: opacity .5s;
+}
+
+#cardList span:after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 2.2em
+}
+
+#cardList .♥️:after {
+  content: '♥️';
+}
+#cardList .♦️:after {
+  content: '♦️';
+}
+#cardList .♣️:after {
+  content: '♣️';
+}
+#cardList .♠️:after {
+  content: '♠️';
+}
