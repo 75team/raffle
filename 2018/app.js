@@ -1,5 +1,5 @@
 function random(m, n) {
-  return m + Math.floor(Math.random() * n);
+  return m + Math.floor(Math.random() * (n - m));
 }
 
 function randomItem(arr, from = 0, to = arr.length) {
@@ -75,8 +75,8 @@ const trackEl = document.getElementById('track');
 
 function partRace(durations, factor) {
   // 根据赛程总时间 duration 和 factor 来划分赛程
-  // 赛程所用基准时间为 duration * factor，扰动 -0.1 ~ +0.1
-  const subDuration = durations.map(d => d * factor * random(9, 11) / 10);
+  // 赛程所用基准时间为 duration * factor，扰动 -0.5~+0.5
+  const subDuration = durations.map(d => d * factor * random(5, 15) / 10);
   subDuration.map((d, i) => {
     durations[i] -= d;
     return durations[i];
