@@ -19,6 +19,12 @@
 
 ![assets/2018.jpg](assets/2018.jpg)
 
+## 2019年会抽奖
+
+[在线演示](https://75team.github.io/raffle/2019/index.html)
+
+![assets/2019.jpg](assets/2019.jpg)
+
 ## LICENSE
 
 [MIT](LICENSE)
