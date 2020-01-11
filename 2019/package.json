@@ -1,0 +1,15 @@
+{
+  "name": "gl-lottery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1 -p9090",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "gl-renderer": "^0.11.4"
+  }
+}
