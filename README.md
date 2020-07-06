@@ -22,6 +22,7 @@
 ## 2019年会抽奖
 
 [在线演示](https://75team.github.io/raffle/2019/index.html)
+[公众号文章](https://mp.weixin.qq.com/s/e5xhZfAsJOjZgfcZ4_7ahg)
 
 ![assets/2019.jpg](assets/2019.jpg)
 
